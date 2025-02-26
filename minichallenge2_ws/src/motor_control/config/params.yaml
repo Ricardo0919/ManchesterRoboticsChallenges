@@ -1,3 +1,5 @@
+
+#=========================== Parametros para Motores ===========================
 /group1/motor_sys_1:
   ros__parameters:
     sys_gain_K: 2.16
@@ -8,14 +10,33 @@
     sys_gain_K: 1.75
     sys_tau_T: 0.5
 
+#=========== Metodo IMC (Método de Control Basado en Modelo Interno) ===========
+# Motor 1
+# Parámetros identificados:
+# K = 2.16, τ = 0.05 s
+# Seleccionamos λ = 0.04 s (algo menor que τ para tener una respuesta relativamente rápida pero evitando excesiva agresividad).
+# 
+# Cálculo:
+# Kp = 0.05 / (2.16 × 0.04) ≈ 0.58
+# Ki = 0.58 / 0.05 ≈ 11.6
+
 /group1/ctrl_1:
   ros__parameters:
-    Kp: 0.005
-    Ki: 2.8
+    Kp: 0.58
+    Ki: 11.6
     Kd: 0.0
+
+# Motor 2
+# Parámetros identificados:
+# K = 1.75, τ = 0.5 s
+# Seleccionamos λ = 0.2 s (cerca de 0.4τ).
+# 
+# Cálculo:
+# Kp = 0.05 / (1.75 × 0.2) ≈ 1.43
+# Ki = 1.43 / 0.5 ≈ 2.86
 
 /group2/ctrl_2:
   ros__parameters:
-    Kp: 0.005
-    Ki: 2.8
+    Kp: 1.43
+    Ki: 2.86
     Kd: 0.0
