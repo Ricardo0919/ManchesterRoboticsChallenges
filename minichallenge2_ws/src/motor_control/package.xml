@@ -1,22 +1,36 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<package format="3">
+<package format="3">  <!-- Definición del paquete con formato 3 de ROS -->
+  
+  <!-- Nombre del paquete -->
   <name>motor_control</name>
+  
+  <!-- Versión del paquete -->
   <version>0.0.0</version>
+  
+  <!-- Descripción del paquete (por completar) -->
   <description>TODO: Package description</description>
+  
+  <!-- Información del mantenedor del paquete -->
   <maintainer email="rickisierra03@gmail.com">ricardosierra</maintainer>
+  
+  <!-- Declaración de licencia -->
   <license>TODO: License declaration</license>
 
-  <depend>rclpy</depend>
-  <depend>std_msgs</depend>
-  <depend>numpy</depend>
+  <!-- Dependencias del paquete -->
+  <depend>rclpy</depend>  <!-- Dependencia para trabajar con ROS 2 en Python -->
+  <depend>std_msgs</depend>  <!-- Dependencia para mensajes estándar en ROS 2 -->
+  <depend>numpy</depend>  <!-- Dependencia para operaciones numéricas -->
 
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
+  <!-- Dependencias de prueba -->
+  <test_depend>ament_copyright</test_depend>  <!-- Dependencia para comprobar la conformidad con los derechos de autor -->
+  <test_depend>ament_flake8</test_depend>  <!-- Dependencia para verificar el estilo de código con flake8 -->
+  <test_depend>ament_pep257</test_depend>  <!-- Dependencia para verificar la documentación del código (PEP 257) -->
+  <test_depend>python3-pytest</test_depend>  <!-- Dependencia para realizar pruebas con pytest -->
 
+  <!-- Exportación de configuraciones adicionales del paquete -->
   <export>
-    <build_type>ament_python</build_type>
+    <build_type>ament_python</build_type>  <!-- Tipo de construcción del paquete (Python) -->
   </export>
+  
 </package>

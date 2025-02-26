@@ -1,7 +1,7 @@
-# This is aservice to set a boolean value.
-# This can be used for starting a process 
+# Este es un servicio para establecer un valor booleano.
+# Esto se puede usar para iniciar un proceso
 
-bool enable # e.g. for hardware enabling / disabling
+bool enable  # Ejemplo: para habilitar o deshabilitar hardware
 ---
-bool success   # indicate successful run of triggered service
-string message # informational, e.g. for error messages
+bool success   # Indica si el servicio se ejecutó con éxito
+string message # Mensaje informativo, por ejemplo, para mensajes de error
