@@ -5,8 +5,8 @@ from std_msgs.msg import Float32
 class MotorPublisher(Node):
     def __init__(self):
         super().__init__('motor_publisher')
-        self.publisher_ = self.create_publisher(Float32, 'motor_speed', 10)
-        self.get_logger().info('Tópico /motor_speed creado y listo para publicar.')
+        self.publisher_ = self.create_publisher(Float32, 'cmd_pwm', 10)
+        self.get_logger().info('Tópico /cmd_pwm creado y listo para publicar.')
 
 def main(args=None):
     rclpy.init(args=args)

@@ -52,7 +52,7 @@ void motor_speed_callback(const void *msg_in) {
 
     // Crear mensaje de feedback correctamente
     char feedback_str[50];
-    snprintf(feedback_str, sizeof(feedback_str), "Vel: %.2f | PWM: %d", speed, pwmValue);
+    snprintf(feedback_str, sizeof(feedback_str), "PWM: %.2f | Speed: %d", speed, pwmValue);
 
     feedback_msg.data.data = feedback_str;  // Asignar string
     feedback_msg.data.size = strlen(feedback_str);
@@ -76,13 +76,13 @@ void setup() {
     allocator = rcl_get_default_allocator();
 
     rclc_support_init(&support, 0, NULL, &allocator);
-    rclc_node_init_default(&node, "motor_node", "", &support);
+    rclc_node_init_default(&node, "motor", "", &support);
 
     // Inicializar Publisher
     rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String), "motor_feedback");
 
     // Inicializar Subscriber
-    rclc_subscription_init_default(&subscriber, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "motor_speed");
+    rclc_subscription_init_default(&subscriber, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32), "cmd_pwm");
 
     rclc_executor_init(&executor, &support.context, 2, &allocator);
     rclc_executor_add_subscription(&executor, &subscriber, &speed_msg, &motor_speed_callback, ON_NEW_DATA);
