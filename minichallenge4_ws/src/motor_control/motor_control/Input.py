@@ -10,11 +10,11 @@ class SetPointPublisher(Node):
         super().__init__('set_point_node')
 
         self.declare_parameter('speed', 10.0)
-        self.declare_parameter('omega', 1.0)
+        self.declare_parameter('frequency', 1.0)
         self.declare_parameter('signal_type', 'sine')
         
         self.speed = self.get_parameter('speed').value
-        self.omega = self.get_parameter('omega').value
+        self.frequency = self.get_parameter('frequency').value
         self.signal_type = self.get_parameter('signal_type').value
         
         self.validate_parameters()
@@ -44,9 +44,9 @@ class SetPointPublisher(Node):
         elapsed_time = (self.get_clock().now() - self.start_time).nanoseconds / 1e9
 
         if self.signal_type == 'sine':
-            self.signal_msg.data = self.speed * np.sin(self.omega * elapsed_time)
+            self.signal_msg.data = self.speed * np.sin(self.frequency * elapsed_time)
         elif self.signal_type == 'square':
-            self.signal_msg.data = self.speed if np.sin(self.omega * elapsed_time) >= 0 else -self.speed
+            self.signal_msg.data = self.speed if np.sin(self.frequency * elapsed_time) >= 0 else -self.speed
         elif self.signal_type == 'step':
             self.signal_msg.data = self.speed
         else:
@@ -60,13 +60,13 @@ class SetPointPublisher(Node):
             if param.name == "speed":
                 if -18 <= param.value <= 18:
                     self.speed = param.value
-                    self.get_logger().info(f"Velocidad actualizada a {self.speed}")
+                    self.get_logger().info(f"Velocidad actualizada a {self.speed} rad/s")
                 else:
-                    self.get_logger().warn(f"Valor de speed fuera de rango ({param.value}), manteniendo {self.speed}")
+                    self.get_logger().warn(f"Valor de speed fuera de rango ({param.value} rad/s), manteniendo {self.speed} rad/s")
 
-            if param.name == "omega":
-                self.omega = param.value
-                self.get_logger().info(f"Frecuencia omega actualizada a {self.omega}")
+            if param.name == "frequency":
+                self.frequency = param.value
+                self.get_logger().info(f"Frecuencia actualizada a {self.frequency}")
 
             if param.name == "signal_type":
                 if param.value in ['sine', 'square', 'step']:
